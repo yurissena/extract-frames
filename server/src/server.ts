@@ -1,5 +1,6 @@
 import express from 'express';
 import * as admin from 'firebase-admin';
+import cors from 'cors';
 import uploadRoutes from './routes/uploadRoutes';
 import listRoutes from './routes/listRoutes';
 
@@ -15,6 +16,9 @@ admin.initializeApp({
 
 // Adicionar middlewares
 app.use(express.json());
+
+// Permitir solicitações CORS de qualquer origem
+app.use(cors());
 
 // Configurar rotas
 app.use('/upload', uploadRoutes);
