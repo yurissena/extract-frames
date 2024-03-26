@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import ProgressBar from 'react-progress-bar';
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const UploadComponent: React.FC = () => {
   const [uploading, setUploading] = useState(false);
@@ -23,7 +23,7 @@ const UploadComponent: React.FC = () => {
     formData.append('video', file);
 
     try {
-      const response: AxiosResponse = await axios.post('/api/upload', formData, {
+      const response: AxiosResponse = await axios.post('http://localhost:3000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },

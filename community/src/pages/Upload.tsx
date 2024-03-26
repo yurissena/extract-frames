@@ -1,45 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import UploadComponent from '../components/UploadComponent';
 
-const Upload: React.FC = () => {
-  const [uploading, setUploading] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
-
-  const handleUpload = async (files: FileList | null) => {
-    if (!files) return;
-
-    setUploading(true);
-    setUploadError(null);
-
-    try {
-      const formData = new FormData();
-      formData.append('video', files[0]);
-
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to upload video.');
-      }
-
-      // Atualizar a interface do usuário com sucesso
-      console.log('Video uploaded successfully');
-    } catch (error: any) {
-      setUploadError(error.message);
-    } finally {
-      setUploading(false);
-    }
-  };
-
+const UploadPage: React.FC = () => {
   return (
     <div>
-      <h1>Upload</h1>
-      <input type="file" onChange={(e) => handleUpload(e.target.files)} />
-      {uploading && <p>Carregando...</p>}
-      {uploadError && <p>{uploadError}</p>}
+      <h1>Upload de Vídeo</h1>
+      <UploadComponent />
     </div>
   );
 };
 
-export default Upload;
+export default UploadPage;
