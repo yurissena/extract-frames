@@ -1,16 +1,22 @@
-// src/controllers/uploadController.ts
 import { Request, Response } from 'express';
 import * as admin from 'firebase-admin';
 
+// Define uma interface para descrever o tipo do objeto req.files
+interface FileFields {
+  [fieldname: string]: Express.Multer.File[];
+}
+
 export const uploadVideo = async (req: Request, res: Response) => {
   try {
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('Nenhum arquivo enviado.');
+    const files = req.files as FileFields;
+    if (!files || !files['video'] || !Array.isArray(files['video'])) {
+      return res.status(400).send('Nenhum arquivo de vídeo enviado.');
     }
 
-    const videoFile = req.files.video as Express.Multer.File;
+    const videoFile = files['video'][0] as Express.Multer.File;
     const bucket = admin.storage().bucket();
-    const fileUpload = bucket.file(videoFile.name);
+    const fileName = videoFile.originalname;
+    const fileUpload = bucket.file(fileName);
 
     const uploadStream = fileUpload.createWriteStream({
       metadata: {
@@ -28,7 +34,7 @@ export const uploadVideo = async (req: Request, res: Response) => {
       res.send('Upload concluído com sucesso.');
     });
 
-    uploadStream.end(videoFile.data);
+    uploadStream.end(videoFile.buffer);
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro interno do servidor.');
