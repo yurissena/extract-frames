@@ -6,7 +6,7 @@ import listRoutes from './routes/listRoutes';
 const app = express();
 
 // Configurar o Firebase
-const serviceAccount = require('../../serviceAccountKey.json');
+const serviceAccount = require('./../serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -21,7 +21,7 @@ app.use('/upload', uploadRoutes);
 app.use('/list', listRoutes);
 
 // Iniciar o servidor
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);
 });
