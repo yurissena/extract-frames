@@ -10,9 +10,17 @@ const UploadComponent: React.FC = () => {
   const handleUpload = async (files: FileList | null) => {
     if (!files) return;
 
+    const allowedTypes = ['video/mp4', 'video/quicktime', 'video/x-msvideo'];
+    const file = files[0];
+
+    if (!allowedTypes.includes(file.type)) {
+      setUploadError('Por favor, selecione um arquivo de vídeo válido.');
+      return;
+    }
+
     setUploading(true);
     const formData = new FormData();
-    formData.append('video', files[0]);
+    formData.append('video', file);
 
     try {
       const response: AxiosResponse = await axios.post('/api/upload', formData, {
@@ -20,7 +28,7 @@ const UploadComponent: React.FC = () => {
           'Content-Type': 'multipart/form-data'
         },
         onUploadProgress: (progressEvent) => {
-          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
           setUploadProgress(progress);
         }
       });
