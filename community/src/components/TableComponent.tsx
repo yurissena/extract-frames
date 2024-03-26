@@ -9,7 +9,7 @@ interface VideoData {
 
 interface Props {
   data: VideoData[];
-  onViewFrames: (videoId: string) => void;
+  onViewFrames?: (videoId: string) => void;
 }
 
 const TableComponent: React.FC<Props> = ({ data, onViewFrames }) => {
@@ -32,7 +32,7 @@ const TableComponent: React.FC<Props> = ({ data, onViewFrames }) => {
             <td>{video.frameCount}</td>
             <td>{video.createdAt}</td>
             <td>
-              <button onClick={() => onViewFrames(video.id)}>Ver Frames</button>
+              <button onClick={() => onViewFrames && onViewFrames(video.id)}>Ver Frames</button>
             </td>
           </tr>
         ))}
