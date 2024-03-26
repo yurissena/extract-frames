@@ -1,6 +1,7 @@
 import express from 'express';
 import * as admin from 'firebase-admin';
-import { uploadRoutes, listRoutes } from '/routes';
+import uploadRoutes from './routes/uploadRoutes';
+import listRoutes from './routes/listRoutes';
 
 const app = express();
 
