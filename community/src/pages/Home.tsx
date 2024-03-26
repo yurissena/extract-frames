@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Home.css';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <h1>Bem-vindo à Página Inicial</h1>
+    <div className="container">
+      <h1 className="heading">Bem-vindo ao Extract Frame </h1>
       <nav>
-        <ul>
-          <li>
-            <Link to="/upload">Ir para Página de Upload</Link>
+        <ul className="nav-list">
+          <li className="nav-item">
+            <Link to="/upload" className="nav-link">Ir para Página de Upload</Link>
           </li>
-          <li>
-            <Link to="/list">Ir para Página de Listagem</Link>
+          <li className="nav-item">
+            <Link to="/list" className="nav-link">Ir para Página de Listagem</Link>
           </li>
         </ul>
       </nav>
