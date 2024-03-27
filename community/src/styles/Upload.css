@@ -1,0 +1,43 @@
+body {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .upload-container {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .drop-area {
+    padding: 20px;
+  }
+  
+  .drop-text {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  .file-input {
+    display: none;
+  }
+  
+  .progress-bar {
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    margin-top: 10px;
+  }
+  
+  .success-message {
+    color: #28a745;
+    margin-top: 10px;
+  }
+  
+  

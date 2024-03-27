@@ -6,6 +6,7 @@ const UploadComponent: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleUpload = async (files: FileList | null) => {
     if (!files) return;
@@ -35,6 +36,7 @@ const UploadComponent: React.FC = () => {
       if (response.status === 200) {
         // Upload bem-sucedido
         console.log('Upload concluído com sucesso');
+        setUploadSuccess(true);
       } else {
         throw new Error('Falha no upload');
       }
@@ -46,11 +48,32 @@ const UploadComponent: React.FC = () => {
     }
   };
 
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    handleUpload(event.dataTransfer.files);
+  };
+
+  const handleFileInputClick = () => {
+    document.getElementById('file-input')?.click();
+  };
+
   return (
-    <div>
-      <input type="file" onChange={(e) => handleUpload(e.target.files)} />
-      {uploading && <ProgressBar completed={uploadProgress} />}
-      {uploadError && <p>{uploadError}</p>}
+    <div className="page-container">
+      <div className="upload-container" onDragOver={handleDragOver} onDrop={handleDrop}>
+        <div className="drop-area">
+          <label htmlFor="file-input" className="drop-text" onClick={handleFileInputClick}>
+            Arraste e solte o arquivo de vídeo aqui ou clique para selecionar
+          </label>
+          <input id="file-input" type="file" onChange={(e) => handleUpload(e.target.files)} className="file-input" />
+        </div>
+        {uploading && <ProgressBar completed={uploadProgress} className="progress-bar" />}
+        {uploadSuccess && !uploading && <p className="success-message">Upload concluído com sucesso!</p>}
+        {uploadError && <p className="error-message">{uploadError}</p>}
+      </div>
     </div>
   );
 };
