@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import cors from 'cors';
 import { uploadVideo } from './controllers/uploadController';
 import { listVideos } from './controllers/listController';
+import { frameVideos } from './controllers/frameController';
 
 const app = express();
 
@@ -22,12 +23,11 @@ app.use(cors());
 app.post('/upload', uploadVideo);
 // Configurar rota de listagem
 app.get('/list', listVideos);
+// Rota para buscar os frames
+app.get('/frames/:videoId', frameVideos);
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);
 });
-
-// Definir o tempo limite de conexão para 10 minutos (600000 milissegundos)
-server.setTimeout(600000); // 10 minutos em milissegundos
