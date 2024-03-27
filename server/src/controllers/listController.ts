@@ -3,13 +3,13 @@ import * as admin from 'firebase-admin';
 
 export const listVideos = async (req: Request, res: Response) => {
   try {
-    const [files] = await admin.storage().bucket().getFiles();
+    const firestore = admin.firestore();
+    const snapshot = await firestore.collection('videos').get();
 
-    const videos = files.map((file) => ({
-      id: file.id,
-      name: file.name,
-      created: file.metadata.timeCreated
-    }));
+    const videos: admin.firestore.DocumentData[] = [];
+    snapshot.forEach(doc => {
+      videos.push(doc.data());
+    });
 
     res.json(videos);
   } catch (error) {
