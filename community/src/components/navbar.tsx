@@ -1,10 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
+import logo from '../logo.svg';
 
 const NavBar: React.FC = () => {
+
   return (
     <nav className="main-navbar">
+      <div className="name-logo">
+        <Link to="/" aria-label="Página inicial">
+          <img src={logo} alt="" />
+          <span>Extract Frame</span>
+        </Link>
+      </div>
       <ul>
         <li><Link to="/" aria-label="Página inicial">Home</Link></li>
         <li><Link to="/upload" aria-label="Página de Upload">Upload</Link></li>
@@ -13,5 +21,4 @@ const NavBar: React.FC = () => {
     </nav>
   );
 };
-
 export default NavBar;
