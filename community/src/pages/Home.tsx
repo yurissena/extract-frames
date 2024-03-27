@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar';
 import '../styles/home.css';
+import logo from '../logo.svg';
 
 const Home: React.FC = () => {
   return (
     <div>
       <NavBar />
-      <div className="conteiner">
+      <div className="conteiner-home">
+        <img className='logo' src={logo} alt="" />
         <h1 className="heading">Bem-vindo ao Extract Frame </h1>
         <nav>
           <ul className="nav-list">
