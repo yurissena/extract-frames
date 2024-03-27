@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "build": "rm -rf dist && tsc",
-    "serve": "node dist/server.js"
+    "start": "rm -rf dist && tsc && node dist/server.js"
   },
   "keywords": [],
   "author": "",
