@@ -1,0 +1,85 @@
+.list-container {
+  padding: 20px;
+}
+
+.list-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Estilos para a tabela */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.custom-table td {
+  text-align: center;
+}
+
+/* Estilos para botões */
+.view-frames-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-frames-button:hover {
+  background-color: #0056b3;
+}
+
+.view-frames-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+.view-frames-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Estilos para os botões de paginação */
+.pagination-container {
+  display: flex;
+  margin-top: 10px;
+  justify-content: left;
+  align-items: center;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  margin: 0 10px;
+  font-size: 14px;
+}

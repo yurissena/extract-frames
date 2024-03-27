@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import TableComponent from '../components/TableComponent';
+import '../styles/list.css'; // Importar o arquivo CSS
 
 interface VideoData {
   id: string;
   fileName: string;
   frameCount: number;
-  createdAt: string; 
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
 }
 
 const List: React.FC = () => {
-    
   const [videos, setVideos] = useState<VideoData[]>([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch('/api/videos');
-        if (!response.ok) {
-          throw new Error('Failed to fetch videos.');
-        }
-        const data = await response.json();
-        setVideos(data);
+        const response = await axios.get<VideoData[]>('http://localhost:3000/list');
+        setVideos(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -29,10 +29,21 @@ const List: React.FC = () => {
     fetchVideos();
   }, []);
 
+  const formatCreatedAt = (createdAt: { _seconds: number; _nanoseconds: number }) => {
+    const date = new Date(createdAt._seconds * 1000 + createdAt._nanoseconds / 1000000);
+    return date.toLocaleString();
+  };
+
   return (
-    <div>
-      <h1>Listagem</h1>
-      <TableComponent data={videos} />
+    <div className="list-container">
+      <h1 className="list-title">Listagem de Vídeos</h1>
+      <TableComponent
+        data={videos.map(video => ({
+          ...video,
+          createdAt: formatCreatedAt(video.createdAt)
+        }))}
+        aria-label="Lista de vídeos" // Adicionando atributo aria-label para acessibilidade
+      />
     </div>
   );
 };
