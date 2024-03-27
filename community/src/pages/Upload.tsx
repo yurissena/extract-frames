@@ -1,7 +1,7 @@
 import React from 'react';
 import UploadComponent from '../components/UploadComponent';
 import NavBar from '../components/navbar';
-import '../styles/Upload.css';
+import '../styles/upload.css';
 
 const UploadPage: React.FC = () => {
   return (

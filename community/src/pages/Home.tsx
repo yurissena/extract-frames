@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar';
-import '../styles/Home.css';
+import '../styles/home.css';
 
 const Home: React.FC = () => {
   return (
