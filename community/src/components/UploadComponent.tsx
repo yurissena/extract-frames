@@ -61,11 +61,17 @@ const UploadComponent: React.FC = () => {
     document.getElementById('file-input')?.click();
   };
 
+  const handleLabelClick = (event: React.MouseEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    handleFileInputClick();
+  };
+
   return (
     <div className="page-container">
       <div className="upload-container" onDragOver={handleDragOver} onDrop={handleDrop}>
         <div className="drop-area">
-          <label htmlFor="file-input" className="drop-text" onClick={handleFileInputClick}>
+          <label htmlFor="file-input" className="drop-text" onClick={handleLabelClick}>
             Arraste e solte o arquivo de vídeo aqui ou clique para selecionar
           </label>
           <input id="file-input" type="file" onChange={(e) => handleUpload(e.target.files)} className="file-input" />
