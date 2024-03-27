@@ -1,0 +1,29 @@
+.main-navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.main-navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-navbar li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.main-navbar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.main-navbar a:hover {
+  color: #f0f0f0;
+}
