@@ -5,11 +5,11 @@ import '../styles/upload.css';
 const UploadPage: React.FC = () => {
   return (
     <div className="page-container">
-      <div className="content-container">
+      <main className="content-container">
         <h1>Upload do Vídeo para a extração de frames</h1>
         <UploadComponent />
-      </div>
-  </div>
+      </main>
+    </div>
   );
 };
 
