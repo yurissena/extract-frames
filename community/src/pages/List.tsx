@@ -20,7 +20,11 @@ const List: React.FC = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get<VideoData[]>('http://localhost:3000/list');
-        setVideos(response.data);
+        // Ordenar os vídeos por data de criação em ordem decrescente
+        const sortedVideos = response.data.sort((a, b) => {
+          return b.createdAt._seconds - a.createdAt._seconds;
+        });
+        setVideos(sortedVideos);
       } catch (error) {
         console.error(error);
       }
@@ -35,16 +39,16 @@ const List: React.FC = () => {
   };
 
   return (
-    <div className="list-container">
+    <main className="list-container">
       <h1 className="list-title">Listagem de Vídeos</h1>
       <TableComponent
         data={videos.map(video => ({
           ...video,
           createdAt: formatCreatedAt(video.createdAt)
         }))}
-        aria-label="Lista de vídeos" // Adicionando atributo aria-label para acessibilidade
+        aria-label="Lista de vídeos"
       />
-    </div>
+    </main>
   );
 };
 
